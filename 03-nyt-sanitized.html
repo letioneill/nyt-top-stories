@@ -51,10 +51,12 @@
 
     // Add articles into the app element
     function renderArticles (article) {
+        if(article.multimedia.length > 0){
+          var imgURL = article.multimedia[4] ? '<figure><img src="' + article.multimedia[4].url + '" alt="' + article.multimedia[4].caption + '"><figcaption><section aria-hidden="true"><span class="caption">' + article.multimedia[4].caption + '</span> <span class="credit">' + article.multimedia[4].copyright + '</span></section></figcaption></figure>' : '';
+        }
         return (
           '<article>' +
-          '<figure><img src="' + sanitizeHTML(article.multimedia[4].url) + '" alt="' + sanitizeHTML(article.multimedia[4].caption) + '"><figcaption><section aria-hidden="true"><span class="caption">' + sanitizeHTML(article.multimedia[4].caption) + '</span> <span class="credit">' + sanitizeHTML(article.multimedia[4].copyright) + '</span></section></figcaption></figure>' +
-
+            imgURL +
             '<div class="content">' +
             '<p class="section">' + sanitizeHTML(article.subsection) + '</p>' +
             '<h2><a href="' + sanitizeHTML(article.url) + '">' + sanitizeHTML(article.title) + '</a></h2>' +
