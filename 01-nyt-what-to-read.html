@@ -33,13 +33,10 @@
     // Get app element
     const app = document.querySelector('#app');
 
-    //API key variable
-    const api = 'mGCkCITpA5Pgf4TAUQyi8UuOpoov9Cfv';
-
 
     // Function to get articles
     var getStory = function () {
-      fetch('https://api.nytimes.com/svc/topstories/v2/arts.json?api-key=' + api).then(function (response) {
+      fetch('nyt-topstories-art.letioneill.workers.dev').then(function (response) {
         if (response.ok) {
           return response.json();
         } else {
