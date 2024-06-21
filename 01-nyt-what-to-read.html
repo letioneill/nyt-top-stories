@@ -36,7 +36,7 @@
 
     // Function to get articles
     var getStory = function () {
-      fetch('nyt-topstories-art.letioneill.workers.dev').then(function (response) {
+      fetch('https://nyt-topstories-art.letioneill.workers.dev').then(function (response) {
         if (response.ok) {
           return response.json();
         } else {
