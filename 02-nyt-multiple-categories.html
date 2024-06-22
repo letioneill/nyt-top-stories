@@ -34,6 +34,7 @@
     // Variables
     const app = document.querySelector('#app');
     const sections = ['https://nyt-topstories-art.letioneill.workers.dev', 'https://nyt-topstories-tech.letioneill.workers.dev', 'https://nyt-topstories-books.letioneill.workers.dev'];
+    const headings = ['Arts', 'Technology', 'Books'];
 
 
     // Add articles into the app element
@@ -54,10 +55,10 @@
     }
 
     // Add articles into the app element
-    function render(articles, section) {
+    function render(articles, section, heading) {
       app.innerHTML += 
         '<section>' +
-          '<h4>' + section + '</h4>' +
+          '<h4>' + heading + '</h4>' +
           '<div class="articles">' +
             articles.slice(0, 7).map(renderArticles).join("") +
           '</div>' +
@@ -65,7 +66,7 @@
     }
 
     // Function to get articles
-    function getSections(section) {
+    function getSections(section, heading) {
         fetch(section).then(function (response) {
           if (response.ok) {
             return response.json();
@@ -74,7 +75,7 @@
           }
         }).then(function (data) {
 
-          render(data.results, section);
+          render(data.results, section, heading);
 
         }).catch(function (error) {
           console.log('No articles available at this time', error);
@@ -82,7 +83,10 @@
     }
 
     // Insert the content from the API
-    sections.forEach(getSections);
+    sections.forEach((section, index) => {
+      const heading = headings[index];
+      getSections(section, heading);
+    });
 
   </script>
 </body>
