@@ -33,8 +33,7 @@
 
     // Variables
     const app = document.querySelector('#app');
-    const api = 'mGCkCITpA5Pgf4TAUQyi8UuOpoov9Cfv';
-    const sections = ['arts', 'technology', 'books'];
+    const sections = ['https://nyt-topstories-art.letioneill.workers.dev', 'https://nyt-topstories-tech.letioneill.workers.dev', 'https://nyt-topstories-books.letioneill.workers.dev'];
 
 
     // Add articles into the app element
@@ -67,7 +66,7 @@
 
     // Function to get articles
     function getSections(section) {
-        fetch('https://api.nytimes.com/svc/topstories/v2/' + section + '.json?api-key=' + api).then(function (response) {
+        fetch(section).then(function (response) {
           if (response.ok) {
             return response.json();
           } else {
